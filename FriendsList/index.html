@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#contain{
+			width: 550px;
+			height: auto;
+			border:1px solid #f55;
+			margin: 10px auto;
+			overflow: auto;
+		}
+		#top{
+			width: 550px;
+			overflow: auto;
+		}
+		#top a{
+			float: right;
+			width: 20px;
+			height: 20px;
+			margin: 5px;
+			text-align: center;
+			text-decoration: none;
+			background: #fee;
+		}
+		.mainA ul,.mainB ul{
+			list-style: none  ;
+		}
+		.mainA li,.mainB li{
+			float: left;
+			width:164px;
+			margin: 8px;
+		}
+		.mainA img{
+			width: 164px;
+			height:150px;
+		}
+		.mainB img{
+			float: left;
+			width: 60px;
+			height: 60px;
+		}
+		.mainA p a,.mainA p span{
+			display: block;
+			height: 20px;
+			line-height: 20px;
+			padding-left: 5px;
+		}
+		.mainB p{
+			float: left;
+			margin-bottom: 4px;
+		}
+		.mainB p a,.mainB p span{
+			display: block;
+			width: 98px;
+			height: 20px;
+			line-height: 20px;
+			padding-left: 5px;
+		}
+		#btm{
+			clear: both;
+			width: 164px;
+			height: 24px;
+			background-color: #f55;
+			color: white;
+			text-align: center;
+			line-height: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="contain">
+		<div id="top">
+			<a href="#"  id="BList">B</a>
+			<a href="#"  id="AList">A</a>
+		</div>
+		<div id="main" class="mainA">
+			<ul>
+				<li>
+					<a href=""><img src="shucai/meizi5.jpg" alt=""></a>
+					<p>
+						<a href="#">Richard</a>
+						<span>JiangSu</span>
+						<span>23 Friends</span>
+					</p>
+					<div id="btm">Add Friends</div>
+				</li>
+				<li>
+					<a href=""><img src="shucai/meizi5.jpg" alt=""></a>
+					<p>
+						<a href="">Richard</a>
+						<span>JiangSu</span>
+						<span>23 Friends</span>
+					</p>
+					<div id="btm">Add Friends</div>
+				</li>
+				<li>
+					<a href=""><img src="shucai/meizi5.jpg" alt=""></a>
+					<p>
+						<a href="">Richard</a>
+						<span>JiangSu</span>
+						<span>23 Friends</span>
+					</p>
+					<div id="btm">Add Friends</div>
+				</li>
+				<li>
+					<a href=""><img src="shucai/meizi5.jpg" alt=""></a>
+					<p>
+						<a href="">Richard</a>
+						<span>JiangSu</span>
+						<span>23 Friends</span>
+					</p>
+					<div id="btm">Add Friends</div>
+				</li>
+				<li>
+					<a href=""><img src="shucai/meizi5.jpg" alt=""></a>
+					<p>
+						<a href="">Richard</a>
+						<span>JiangSu</span>
+						<span>23 Friends</span>
+					</p>
+					<div id="btm">Add Friends</div>
+				</li>
+				<li>
+					<a href=""><img src="shucai/meizi5.jpg" alt=""></a>
+					<p>
+						<a href="">Richard</a>
+						<span>JiangSu</span>
+						<span>23 Friends</span>
+					</p>
+					<div id="btm">Add Friends</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script>
+	window.onload = function  () {
+		var listBtn = document.getElementById('BList');
+		var cardBtn = document.getElementById('AList');
+		var change = document.getElementById('main');
+		listBtn.onclick = function () {
+			change.className = 'mainB';
+		}
+		cardBtn.onclick = function () {
+			change.className = 'mainA';
+		}
+	}
+	</script>
+</body>
+</html>
