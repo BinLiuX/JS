@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.notices{
+			width: 298px;
+			height: 98px;
+			margin: 10px auto;
+			border: 1px solid #f7f7f7;
+			overflow: hidden;
+			font-size: 12px;
+			font-family: Arial;
+		}
+		.noTit{
+			position: relative;
+			height: 27px;
+		}
+		.notices ul{
+			position: absolute;
+			width: 301px;
+			left: -1px;
+			list-style: none;
+		}
+		.notices li{
+			float: left;
+			width: 58px;
+			height: 26px;
+			padding: 0 1px;
+			text-align: center;
+			line-height: 26px;
+			background: #f7f7f7;
+			border-bottom: 1px solid #eee;
+			overflow: hidden;
+		}
+		.notices li.select{
+			background: #fff;
+			border-bottom:none;
+			padding: 0;
+			font-weight: bold;
+			border-left: 1px solid #eee;
+			border-right: 1px solid #eee;
+		}
+		.notices li a:link,.notices li a:visited{
+			text-decoration: none;
+			color: black;
+		}
+		.notices li a:hover{
+			color: #f55;
+		}
+	</style>
+	<script>
+	// window.onload = function  () {
+	// 	// var titles = document.getElementById('noTit').getElementsByTagName('li');
+	// 	// var titles = document.querySelectorAll('#noTit ul>li');
+	// 	// document.querySelectorAll严格遵循选择器规律。所以#notit>li 是找不到任何节点的；
+	// 	var index = 0;
+	// 	var timer = null;
+	// 	var titles =document.querySelector("#noTit").querySelectorAll("li");
+	// 	// alert(titles.length);// 5
+	// 	var divs = document.getElementById('mains').getElementsByTagName('div');
+	// 	if (titles.length!=divs.length) {
+	// 		return false;
+	// 	};
+	// 	for (var i = 0; i < titles.length; i++) {
+	// 		titles[i].id = i;
+	// 		titles[i].onmouseover = function  () {
+	// 			var that = this;//引入this变量
+	// 			//防止切换时间内鼠标滑动到另外的标签，形成
+	// 			if (timer) {
+	// 				clearTimeout(timer);
+	// 				timer = null;
+	// 			};
+	// 			//使用setTimeout设置单次延迟
+	// 			timer = setInterval(function  () {
+	// 				for (var j = 0; j < titles.length; j++) {
+	// 					titles[j].className='';
+	// 					divs[j].style.display = 'none';
+	// 				};
+	// 				that.className = 'select';
+	// 				divs[that.id].style.display = '';
+	// 			},3000)	
+	// 			//try to use apply and call bind titles[i] or titles;failed, maybe setTimeout is a window function so it can not be binded;	
+	// 		}
+	// 	};
+	// }
+	</script>
+	<script>
+	window.onload = function  () {
+		var index = 0 ;
+		var timer = null;
+		var titles = document.querySelector("#noTit").querySelectorAll("li");
+		var divs = document.getElementById('mains').getElementsByTagName("div");
+
+		if (titles.length!=divs.length) {
+			return false;
+		};
+		for (var i = 0; i < titles.length; i++) {
+			titles[i].id = i;
+			titles[i].onmouseover = function  () {
+				clearInterval(timer);
+				changeOp(this.id);
+			}
+			titles[i].onmouseout = function  () {
+				index = this.id;//不可以使用-1的，因为上面已经选择了鼠标所在的ID，说以，当鼠标离开的时候获取到当前的index，然后等待500MS再+1刷新，嗯 逻辑正确；
+				timer = setInterval(autoPlay,510)
+				//此处调用函数只要函数名称即可。
+			}
+		};
+		timer = setInterval(autoPlay,510);
+		//函数的嵌套使用，优化代码，减少冗余代码；思路是把重复的代码用函数表达出来，规则是从最底层的代码开始整理；
+		function  autoPlay () {
+			index++;
+			if (index>=titles.length) {
+				index = 0;
+			};
+			changeOp(index);
+		}
+		function changeOp (curIndex) {
+			for (var j = 0; j < titles.length; j++) {
+				titles[j].className = '';
+				divs[j].style.display = 'none';
+			};
+
+			titles[curIndex].className = 'select';
+			divs[curIndex].style.display = 'block';
+		}
+	}
+	</script>
+</head>
+<body>
+	<div id="notices" class="notices">
+		<div id="noTit" class="noTit">
+			<ul>
+				<li class="select"><a href="#">娱乐</a></li>
+				<li><a href="#">财经</a></li>
+				<li><a href="#">体育</a></li>
+				<li><a href="#">国内</a></li>
+				<li><a href="#">国际</a></li>
+			</ul>
+		</div>
+		<div id="mains" class="mains">
+			<div id="main1" style="display:none">娱乐</div>
+			<div id="main2" style="display:none">财经</div>
+			<div id="main3" style="display:none">体育</div>
+			<div id="main4" style="display:none">国内</div>
+			<div id="main5" style="display:block">国际</div>
+		</div>
+	</div>
+</body>
+</html>
