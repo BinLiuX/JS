@@ -4,4 +4,4 @@ Mode-A:
 ![image](https://github.com/BinLiuX/JS/blob/master/FriendsList/Mode-A.png)
 
 Mode-B:
-![image](JS/FriendsList/Mode-B.png)
+![image](https://github.com/BinLiuX/JS/blob/master/FriendsList/Mode-B.png)
