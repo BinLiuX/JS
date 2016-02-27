@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#con {
+			width: 400px;
+			height: 200px;
+			margin: 100px auto;
+			border: 1px solid red;
+		}
+		#content1{
+			height: 50px;
+			width: 400px;
+			overflow: hidden;
+		}
+		#content1 li {
+			float: left;
+			width: 80px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			color: white;
+			background: #e55;
+			cursor: pointer;
+		}
+		#content1 .on {
+			color: black;
+			background: #fff;
+		}
+		#content2{
+			width: 400px;
+			height: 150px;
+			font-size: 60px;
+			text-align: center;
+			line-height: 150px;
+		}
+	</style>
+</head>
+<body>
+	<div id="con">
+		<ul id="content1">
+			<li class="on">娱乐</li>
+			<li>体育</li>
+			<li>财经</li>
+			<li>花边</li>
+			<li>秘史</li>
+		</ul>
+		<ul id="content2">
+			<li style="display: block;">娱乐</li>
+			<li style="display: none;">体育</li>
+			<li style="display: none">财经</li>
+			<li style="display: none">花边</li>
+			<li style="display: none">秘史</li>
+		</ul>
+	</div>
+	<script>
+		window.onload = function () {
+			var con = document.getElementById('con');
+			//获取当前div
+			var list = document.getElementById('content1').getElementsByTagName('li');
+			//获取标题
+			var main = document.getElementById('content2').getElementsByTagName('li');
+			//获取内容
+			var index = 0;
+			//设置index
+			var timer = null;
+			//声明变量，后续指向setInterval
+			
+			//创建自动播放函数
+			function autoPlay(argument) {
+				timer = setInterval(function () {
+					index++;
+					if (index>=list.length) {
+						index = 0;
+					}
+					//内部嵌套changeOp函数的代码，可以用changeOp(index)代替
+					for (var i = 0; i < list.length; i++) {
+						list[i].className = "";
+						main[i].style.display = "none";
+					}
+					list[index].className = "on";
+					main[index].style.display = "block";
+				},1000);
+			}
+			//运行自动播放函数
+			autoPlay();
+			
+			//封装class和style变化的函数
+			function changeOp(curIndex) {
+				for (var i = 0; i < list.length; i++) {
+					list[i].className = "";
+					main[i].style.display = "none";
+				}
+				list[curIndex].className = "on";
+				main[curIndex].style.display = "block";
+				//避免鼠标离开之后的index混乱
+				index = curIndex;
+			}
+			for (var i = 0; i < list.length; i++) {
+				//给每个标题设置ID
+				list[i].id = i;
+				//鼠标悬浮时
+				list[i].onmouseover = function () {
+					//清除setInterval
+					clearInterval(timer);
+					//利用每个标题的ID作为index传入
+					changeOp(this.id);
+				}
+				//鼠标离开时继续自动播放
+				list[i].onmouseout = function () {
+					autoPlay();
+				}
+			}
+		}
+	</script>
+</body>
+</html>
