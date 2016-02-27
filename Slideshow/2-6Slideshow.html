@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="2-6Slideshow.css">
+</head>
+<body>
+	<div id="con">
+		<ul id="pics">
+			<li><img src="slideshow-1.jpg" alt=""></li>
+			<li><img src="slideshow-2.jpg" alt=""></li>
+			<li><img src="slideshow-3.jpg" alt=""></li>
+			<li><img src="slideshow-4.jpg" alt=""></li>
+			<li><img src="slideshow-5.jpg" alt=""></li>
+		</ul>
+		<ol id="list">
+			<li class="on">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ol>
+	</div>
+	<script>
+		window.onload = function () {
+			var con = document.getElementById('con');
+			var pics = document.getElementById('pics');
+			var list = document.getElementById('list').getElementsByTagName('li');
+			var index = 0;
+			var tiemer = null;
+
+			function autoPlay(argument) {
+				timer = setInterval(function () {
+					index++;
+					if (index>=list.length) {
+						index = 0;
+					}
+					changeOp(index);
+				},1000);
+			}
+			autoPlay();
+
+			con.onmouseover = function () {
+				clearInterval(timer);
+			}
+
+			con.onmouseout = autoPlay;
+
+			for (var n = 0; n < list.length; n++) {
+				list[n].id = n;
+				list[n].onmouseover = function () {
+						changeOp(this.id);
+				}
+			}
+			function changeOp(curIndex) {
+				pics.style.marginTop = -170*curIndex + "px";
+				for (var i = 0; i < list.length; i++) {
+					list[i].className = "";
+				}
+				list[curIndex].className = "on";
+				index = curIndex;
+			}
+		}
+	</script>
+</body>
+</html>

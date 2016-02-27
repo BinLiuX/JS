@@ -1,0 +1,38 @@
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#con {
+	position: relative;
+	width: 490px;
+	height: 170px;
+	margin: 100px auto;
+	overflow: hidden;
+}
+/*设定好大小，将多出的li部分隐藏*/
+#con ul li {
+	height: 170px;
+}
+/*防止图片错位*/
+#con ol {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+}
+#con ol li {
+	float: left;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	margin-left: 5px;
+	color: white;
+	background: #e55;
+	line-height: center;
+	text-align: center;
+	cursor: pointer;
+}
+#con ol li.on {
+	background: #6249C8;
+}
+/*权重原因不能只写class选择器，必须从#con开始才能覆盖原来的属性*/
